@@ -2218,6 +2218,69 @@ this rule only to arrays with two or more elements.
 * Be consistent. In an ideal world, be consistent with these guidelines.
 * Use common sense.
 
+### Blank lines
+
+Blank lines should be used in the following situations:
+
+* After an `end` line, if the line is not the last one of the file.
+* After a `private` or `protected` keyword
+* In the body of a class, to separate class methods calls (see example)
+* In the body of methods, to separate logical blocks
+
+This is a good example:
+
+```ruby
+class MomentsController < ApplicationController
+  # Modules
+  include MomentHelper
+
+  # Filters
+  before_filter :ensure_confirmed_user
+  before_filter :ensure_something
+
+  # POST /moments
+  def create
+    @moment = Moment.new moment_params
+
+    if @moment.save
+      render json: { success: true }
+    else
+      head 422
+    end
+  end
+end
+```
+
+This is (really) bad example:
+
+```ruby
+
+class MomentsController < ApplicationController
+
+  # Modules
+  include MomentHelper
+
+  # Filters
+  before_filter :ensure_confirmed_user
+  before_filter :ensure_something
+
+  # POST /moments
+  def create
+
+    @moment = Moment.new moment_params
+
+    if @moment.save
+      render json: { success: true }
+    else
+      head 422
+    end
+
+  end
+
+end
+ 
+```
+
 ## Tools
 
 Here's some tools to help you automatically check Ruby code against
