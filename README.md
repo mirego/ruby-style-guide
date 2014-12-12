@@ -901,8 +901,8 @@ would happen if the current value happened to be `false`.)
 * Always run the Ruby interpreter with the `-w` option so it will warn
 you if you forget either of the rules above!
 
-* Use `lambda` or the new lambda literal syntax (`->`) for single line body blocks.
-Use the `lambda` method for multi-line blocks.
+* Use the new lambda literal syntax (`->`) for single line body blocks.
+Use the `lambda` method only for multi-line blocks.
 
     ```Ruby
     # bad
@@ -915,9 +915,11 @@ Use the `lambda` method for multi-line blocks.
     l = ->(a, b) { a + b }
     l.call(1, 2)
 
+    # bad
     l = lambda { |a, b| a + b }
     l.call(1, 2)
 
+    # good
     l = lambda do |a, b|
       tmp = a * 7
       tmp * b / 50
